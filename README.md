@@ -2,6 +2,10 @@
 
 A lightweight internal support ticket management tool built for the BuiltbyGSV Software Engineer Internship Round 1 assignment.
 
+## Live Demo
+
+[Open Mini Support Desk](https://mini-support-desk-beta.vercel.app/)
+
 ## Features
 
 - View 10 sample support tickets
