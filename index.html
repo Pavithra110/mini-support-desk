@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mini Support Desk - internal support ticket management tool">
+  <title>Mini Support Desk</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Mini Support Desk</h1>
+      <p>Internal support ticket management</p>
+    </div>
+    <button id="addTicketBtn" class="primary-btn">+ New Ticket</button>
+  </header>
+
+  <main class="container">
+    <section class="stats-grid" aria-label="Ticket statistics">
+      <article class="stat-card">
+        <span>Total Tickets</span>
+        <strong id="totalCount">0</strong>
+      </article>
+      <article class="stat-card">
+        <span>Open</span>
+        <strong id="openCount">0</strong>
+      </article>
+      <article class="stat-card">
+        <span>In Progress</span>
+        <strong id="progressCount">0</strong>
+      </article>
+      <article class="stat-card">
+        <span>Resolved</span>
+        <strong id="resolvedCount">0</strong>
+      </article>
+    </section>
+
+    <section class="toolbar">
+      <div class="search-box">
+        <label for="searchInput">Search tickets</label>
+        <input id="searchInput" type="search" placeholder="Search by title or client...">
+      </div>
+
+      <div>
+        <label for="statusFilter">Status</label>
+        <select id="statusFilter">
+          <option value="all">All</option>
+          <option value="Open">Open</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Resolved">Resolved</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="priorityFilter">Priority</label>
+        <select id="priorityFilter">
+          <option value="all">All</option>
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="tickets-section">
+      <div class="section-heading">
+        <div>
+          <h2>Support Tickets</h2>
+          <p id="resultCount">0 tickets</p>
+        </div>
+      </div>
+
+      <div id="ticketList" class="ticket-list"></div>
+      <div id="emptyState" class="empty-state hidden">
+        <h3>No tickets found</h3>
+        <p>Try changing your search or filters.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Ticket form modal -->
+  <div id="formModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="formTitle">
+    <div class="modal-card">
+      <button class="close-btn" data-close="formModal" aria-label="Close">×</button>
+      <h2 id="formTitle">Create Ticket</h2>
+
+      <form id="ticketForm">
+        <input type="hidden" id="ticketId">
+
+        <label for="title">Title</label>
+        <input id="title" type="text" maxlength="100" required placeholder="Example: Login issue">
+
+        <label for="client">Client</label>
+        <input id="client" type="text" maxlength="60" required placeholder="Example: ABC Corp">
+
+        <div class="form-row">
+          <div>
+            <label for="priority">Priority</label>
+            <select id="priority" required>
+              <option value="High">High</option>
+              <option value="Medium" selected>Medium</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="status">Status</label>
+            <select id="status" required>
+              <option value="Open" selected>Open</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Resolved">Resolved</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="secondary-btn" data-close="formModal">Cancel</button>
+          <button type="submit" class="primary-btn">Save Ticket</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Ticket details modal -->
+  <div id="detailsModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="detailsTitle">
+    <div class="modal-card">
+      <button class="close-btn" data-close="detailsModal" aria-label="Close">×</button>
+      <div id="ticketDetails"></div>
+    </div>
+  </div>
+
+  <!-- Delete confirmation modal -->
+  <div id="deleteModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="deleteTitle">
+    <div class="modal-card small">
+      <h2 id="deleteTitle">Delete ticket?</h2>
+      <p>This action cannot be undone.</p>
+      <div class="modal-actions">
+        <button class="secondary-btn" data-close="deleteModal">Cancel</button>
+        <button id="confirmDeleteBtn" class="danger-btn">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Mini Support Desk • Built as a software engineering assignment</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
