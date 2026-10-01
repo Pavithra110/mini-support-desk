@@ -72,4 +72,6 @@ This was chosen because the assignment is intended to be a lightweight internal 
 
 ## Deployment
 
-The project can be deployed as a static site using Vercel, Netlify or GitHub Pages.
+The application is deployed on Vercel.
+
+**Live Demo:** https://mini-support-desk-beta.vercel.app/
